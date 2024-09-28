@@ -42,11 +42,9 @@
     <bean id="d" class="com.abc.EmployeeDao">  
     <property name="eTemplate" ref="hTemplate"></property>  
     </bean> -->
-    <bean id="d" class="com.abc.EmployeeDao">
+    <!--<bean id="d" class="com.abc.EmployeeDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
-    </bean>
-    <tx:annotation-driven/>
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="mysessionFactory"/>
-	</bean>
+    </bean>-->
+
+
     </beans>  
