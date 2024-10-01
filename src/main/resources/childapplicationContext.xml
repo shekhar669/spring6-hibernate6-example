@@ -6,7 +6,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 		http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd"
+        default-lazy-init="true">
     <tx:annotation-driven/>
     <bean id="emp" class="com.abc.EmployeeDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
@@ -14,4 +15,13 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="mysessionFactory"/>
     </bean>
+    <bean id="cira" class="com.abc.CircularDependencyA" lazy-init="true">
+        <!--<constructor-arg ref="cirb"/>-->
+        <property name="circB" ref="cirb"/>
+    </bean>
+    <bean id="cirb" class="com.abc.CircularDependencyB" lazy-init="true">
+       <!-- <constructor-arg ref="cira"/>-->
+        <property name="circA" ref="cira"/>
+    </bean>
+
 </beans>

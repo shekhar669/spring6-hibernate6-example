@@ -45,6 +45,6 @@
     <!--<bean id="d" class="com.abc.EmployeeDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
     </bean>-->
-
+    <bean id="refBean" class="com.abc.RefBean"/>
 
     </beans>  

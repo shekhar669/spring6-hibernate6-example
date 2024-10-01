@@ -3,13 +3,23 @@
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 		http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
     <tx:annotation-driven/>
+
     <bean id="empEx" class="com.abc.EmployeeExternalDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
+        <property name="pipes">
+            <set>
+                <ref bean="refBean"/>
+            </set>
+        </property>
+
     </bean>
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="mysessionFactory"/>

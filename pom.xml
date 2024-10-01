@@ -80,6 +80,12 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+	  <dependency>
+		  <groupId>com.jillesvangurp</groupId>
+		  <artifactId>spring-depend</artifactId>
+		  <!-- check maven central for latest, Readme's get out of date so easily ... -->
+		  <version>0.2</version>
+	  </dependency>
 	
 	</dependencies>
 

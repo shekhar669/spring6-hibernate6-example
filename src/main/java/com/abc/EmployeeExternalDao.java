@@ -4,10 +4,12 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EmployeeExternalDao {
-
+   private Set<RefBean> pipes= new HashSet<>();
     HibernateTemplate eTemplate;
 
     public SessionFactory getMysessionFactory() {
@@ -40,5 +42,13 @@ public class EmployeeExternalDao {
     public List<?> queryEmployee(){
         List<?> el = mysessionFactory.getCurrentSession().createQuery("FROM Employee",Employee.class).list();
         return el;
+    }
+
+    public Set<RefBean> getPipes() {
+        return pipes;
+    }
+
+    public void setPipes(Set<RefBean> pipes) {
+        this.pipes = pipes;
     }
 }
