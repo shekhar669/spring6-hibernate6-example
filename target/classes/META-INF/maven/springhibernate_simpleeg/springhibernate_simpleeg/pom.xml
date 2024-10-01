@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>springhibernate_simpleeg</groupId>
+  <artifactId>springhibernate_simpleeg</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+	  <dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-core</artifactId>
+		  <version>2.19.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-core</artifactId>
+		  <version>2.19.0</version>
+		  <type>test-jar</type>
+		  <scope>test</scope>
+	  </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.28</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+				<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.common</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>${hibernate.version}</version>
+			<classifier>tests</classifier>
+		</dependency>-->
+		<!--<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>-->
+		<!--<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>-->
+	  <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
+	  <dependency>
+		  <groupId>jakarta.persistence</groupId>
+		  <artifactId>jakarta.persistence-api</artifactId>
+		  <version>3.1.0</version>
+	  </dependency>
+
+	  <dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+	  <dependency>
+		  <groupId>com.jillesvangurp</groupId>
+		  <artifactId>spring-depend</artifactId>
+		  <!-- check maven central for latest, Readme's get out of date so easily ... -->
+		  <version>0.2</version>
+	  </dependency>
+	
+	</dependencies>
+
+	<properties>
+		<spring.version>6.1.12</spring.version>
+		<hibernate.version>6.6.0.Final</hibernate.version>
+	</properties>	
+
+</project>

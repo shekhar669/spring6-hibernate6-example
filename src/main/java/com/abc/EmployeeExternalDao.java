@@ -12,6 +12,9 @@ public class EmployeeExternalDao {
    private Set<RefBean> pipes= new HashSet<>();
     HibernateTemplate eTemplate;
 
+    public EmployeeExternalDao() {
+    }
+
     public SessionFactory getMysessionFactory() {
         return mysessionFactory;
     }

@@ -52,18 +52,16 @@ public static void main(String[] args) {
 
     CircularDependencyA exta=(CircularDependencyA)context2.getBean("cira");
     System.out.println("ext" +exta);
-    CircularDependencyB extb=(CircularDependencyB)context2.getBean("cirb");
-    System.out.println("ext" +extb);
+    IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproAnalytic");
+    System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
 
     Employee e=new Employee();
 	//e.setId(251);
 	e.setName("Kishore"+ new Random().nextInt());
 	e.setSalary(8011000);
-	
 	//dao.saveEmployee(e);
 	//dao.updateEmployee(e);
-        
-        List<?> empl = dao.queryEmployee();
+      List<?> empl = dao.queryEmployee();
         
         for(Object eobj:empl)
         {

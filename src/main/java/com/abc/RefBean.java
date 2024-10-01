@@ -2,6 +2,15 @@ package com.abc;
 
 public class RefBean {
     private String name="ref bean";
+    private EmployeeExternalDao parent;
+
+    public EmployeeExternalDao getParent() {
+        return parent;
+    }
+
+    public void setParent(EmployeeExternalDao parent) {
+        this.parent = parent;
+    }
 
     public String getName() {
         return name;
