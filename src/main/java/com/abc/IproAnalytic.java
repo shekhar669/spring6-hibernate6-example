@@ -1,15 +1,13 @@
 package com.abc;
 
-import org.springframework.beans.factory.ObjectFactory;
-
-import java.util.Map;
+import com.abc.analytics.Pipe;
 import java.util.Set;
 
 
 public class IproAnalytic {
     public IproAnalytic() {
     }
-    private Set<ObjectFactory<Pipe>> pipes;
+  /*  private Set<ObjectFactory<Pipe>> pipes;
 
 
     public Object getPipes() {
@@ -17,6 +15,15 @@ public class IproAnalytic {
     }
 
     public void setPipes(Set<ObjectFactory<Pipe>> pipes) {
+        this.pipes = pipes;
+    }*/
+    private Set<Pipe> pipes;
+
+    public Set<Pipe> getPipes() {
+        return pipes;
+    }
+
+    public void setPipes(Set<Pipe> pipes) {
         this.pipes = pipes;
     }
 }

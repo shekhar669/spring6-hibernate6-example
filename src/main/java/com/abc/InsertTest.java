@@ -52,7 +52,7 @@ public static void main(String[] args) {
 
     CircularDependencyA exta=(CircularDependencyA)context2.getBean("cira");
     System.out.println("ext" +exta);
-    IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproAnalytic");
+    IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproSolutionAnalytic");
     System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
 
     Employee e=new Employee();

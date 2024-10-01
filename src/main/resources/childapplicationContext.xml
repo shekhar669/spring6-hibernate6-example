@@ -30,21 +30,19 @@
     </bean>-->
 
     <!-- iproAnalytic now refers to pipe1 through PipeManager -->
-    <bean id="iproAnalytic" class="com.abc.IproAnalytic">
-
-            <property name="pipes">
+    <bean id="iproSolutionAnalytic" class="com.abc.IproAnalytic">
+        <property name="pipes">
                 <set>
-                    <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                  <!--  <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
                         <property name="targetBeanName" value="pipe1" />
                     </bean>
                     <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
                         <property name="targetBeanName" value="pipe2" />
-                    </bean>
+                    </bean>-->
                     <!-- Add more pipes as needed -->
+                    <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
                 </set>
             </property>
-
-
     </bean>
 
     <!-- Define pipe1 bean -->
@@ -59,6 +57,20 @@
     <bean id="SUBJECT_RANGE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
         <property name="staticField" value="com.abc.InterfaceStaticValue.staticVal" />
     </bean>
+    <bean id="SUBJECT_RANGE_START" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.abc.InterfaceStaticValue.staticVal" />
+    </bean>
 
 
+    <bean id="pipe" class="com.abc.analytics.Pipe"
+          scope="prototype" abstract="true"/>
+
+    <bean id="pipeJobParametersToS1A1" parent="pipe" abstract="true">
+        <property name="source" ref="iproSolutionAnalytic" />
+    </bean>
+
+    <bean id="pipeMemberStartToEtlS1A1MemberStart" parent="pipeJobParametersToS1A1">
+        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
+        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
+    </bean>
 </beans>
