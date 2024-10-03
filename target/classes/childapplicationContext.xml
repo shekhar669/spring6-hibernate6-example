@@ -13,7 +13,7 @@
     </bean>
     <bean id="cira" class="com.abc.CircularDependencyA">
         <!--<constructor-arg ref="cirb"/>-->
-        <property name="circB" ref="cirb"/>
+        <!--<property name="circB" ref="cirb"/>-->
     </bean>
     <bean id="cirb" class="com.abc.CircularDependencyB">
        <!-- <constructor-arg ref="cira"/>-->
