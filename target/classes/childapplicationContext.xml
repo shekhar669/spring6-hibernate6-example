@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-		http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd"
-        >
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
     <!--default-lazy-init="true"-->
-    <tx:annotation-driven/>
+   <!-- <tx:annotation-driven/>-->
     <bean id="emp" class="com.abc.EmployeeDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
     </bean>
@@ -41,6 +36,7 @@
                     </bean>-->
                     <!-- Add more pipes as needed -->
                     <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
+                    <ref bean="pipeMemberStartToEtlS1A1MemberEnd"/>
                 </set>
             </property>
     </bean>
@@ -61,7 +57,6 @@
         <property name="staticField" value="com.abc.InterfaceStaticValue.staticVal" />
     </bean>
 
-
     <bean id="pipe" class="com.abc.analytics.Pipe"
           scope="prototype" abstract="true"/>
 
@@ -73,5 +68,8 @@
         <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
         <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
     </bean>
-
+    <bean id="pipeMemberStartToEtlS1A1MemberEnd" parent="pipeJobParametersToS1A1">
+        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
+        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
+    </bean>
 </beans>

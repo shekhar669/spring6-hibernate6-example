@@ -9,6 +9,7 @@ public class Pipe {
     }
 
     private String sourceTypeName;
+    private String sinkTypeName;
 
     public String getSinkTypeName() {
         return sinkTypeName;
@@ -17,8 +18,6 @@ public class Pipe {
     public void setSinkTypeName(String sinkTypeName) {
         this.sinkTypeName = sinkTypeName;
     }
-
-    private String sinkTypeName;
 
     public String getSourceTypeName() {
         return sourceTypeName;

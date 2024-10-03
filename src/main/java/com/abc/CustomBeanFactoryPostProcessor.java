@@ -37,6 +37,7 @@ public class CustomBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 
     public void loadAdditionalBeanDefinition(ConfigurableListableBeanFactory beanFactory){
         DefaultListableBeanFactory beanFactoryA = (DefaultListableBeanFactory) beanFactory;
+        beanFactoryA.addBeanPostProcessor(new CustomBeanPostProcessor());
         //beanFactoryA.setAllowCircularReferences(true);
         // Create an XmlBeanDefinitionReader to load additional configurations
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactoryA);
