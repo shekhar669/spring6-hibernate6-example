@@ -51,8 +51,8 @@ public static void main(String[] args) {
     EmployeeExternalDao dao=(EmployeeExternalDao)context2.getBean("empEx");
     CircularDependencyA exta=(CircularDependencyA)context2.getBean("cira");
     System.out.println("ext" +exta);
-    IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproSolutionAnalytic");
-    System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
+   // IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproSolutionAnalytic");
+   // System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
 
     BeanA beanA=(BeanA)context2.getBean("beanA");
     System.out.println("beanA###############" +beanA.getBeanBSet().size());

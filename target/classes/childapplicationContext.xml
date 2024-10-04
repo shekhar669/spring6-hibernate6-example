@@ -24,22 +24,22 @@
         <property name="pipe1" ref="pipe1" />
     </bean>-->
 
-    <!-- iproAnalytic now refers to pipe1 through PipeManager -->
+    <!-- iproAnalytic now refers to pipe1 through PipeManager
     <bean id="iproSolutionAnalytic" class="com.abc.IproAnalytic">
         <property name="pipes">
                 <set>
-                  <!--  <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+                  <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
                         <property name="targetBeanName" value="pipe1" />
                     </bean>
                     <bean class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
                         <property name="targetBeanName" value="pipe2" />
-                    </bean>-->
-                    <!-- Add more pipes as needed -->
+                    </bean>
+
                     <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
                     <ref bean="pipeMemberStartToEtlS1A1MemberEnd"/>
                 </set>
             </property>
-    </bean>
+    </bean>-->
 
     <!-- Define pipe1 bean -->
     <bean id="pipe1" class="com.abc.Pipe">
@@ -61,7 +61,7 @@
           scope="prototype" abstract="true"/>
 
     <bean id="pipeJobParametersToS1A1" parent="pipe" abstract="true">
-        <property name="source" ref="iproSolutionAnalytic" />
+        <property name="source" ref="beanA" />
     </bean>
 
 
@@ -73,7 +73,7 @@
         <property name="beanA" ref="beanA" />
     </bean>-->
 
-    <bean id="beanBSet" class="java.util.HashSet">
+    <bean id="beanBSet" class="java.util.HashSet" lazy-init="true">
         <constructor-arg>
             <list>
                <!-- <ref bean="beanB" />-->
