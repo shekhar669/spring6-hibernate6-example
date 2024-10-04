@@ -54,6 +54,9 @@ public static void main(String[] args) {
     IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproSolutionAnalytic");
     System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
 
+    BeanA beanA=(BeanA)context2.getBean("beanA");
+    System.out.println("beanA###############" +beanA.getBeanBSet().size());
+
     Employee e=new Employee();
 	//e.setId(251);
 	e.setName("Kishore"+ new Random().nextInt());

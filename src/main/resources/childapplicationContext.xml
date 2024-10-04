@@ -72,4 +72,21 @@
         <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
         <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
     </bean>
+
+
+    <bean id="beanA" class="com.abc.BeanA" depends-on="beanB">
+        <property name="beanBSet" ref="beanBSet" />
+    </bean>
+
+    <bean id="beanB" class="com.abc.BeanB">
+        <property name="beanA" ref="beanA" />
+    </bean>
+
+    <bean id="beanBSet" class="java.util.HashSet">
+        <constructor-arg>
+            <list>
+                <ref bean="beanB" />
+            </list>
+        </constructor-arg>
+    </bean>
 </beans>
