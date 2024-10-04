@@ -4,8 +4,8 @@ import com.abc.BeanA;
 import com.abc.IproAnalytic;
 
 public class Pipe {
-    private IproAnalytic source;
-    private BeanA beanA;
+    private BeanA source;
+
 
     public Pipe() {
     }
@@ -29,19 +29,12 @@ public class Pipe {
         this.sourceTypeName = sourceTypeName;
     }
 
-    public IproAnalytic getSource() {
+
+    public BeanA getSource() {
         return source;
     }
 
-    public void setSource(IproAnalytic source) {
+    public void setSource(BeanA source) {
         this.source = source;
-    }
-
-    public BeanA getBeanA() {
-        return beanA;
-    }
-
-    public void setBeanA(BeanA beanA) {
-        this.beanA = beanA;
     }
 }

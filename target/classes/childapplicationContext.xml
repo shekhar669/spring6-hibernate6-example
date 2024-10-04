@@ -66,14 +66,14 @@
 
 
     <bean id="beanA" class="com.abc.BeanA" scope="prototype">
-        <property name="beanBSet" ref="beanBSet" />
+       <!--<property name="beanBSet" ref="beanBSet" />-->
     </bean>
 
     <!--<bean id="beanB" class="com.abc.BeanB" scope="prototype" lazy-init="true">
         <property name="beanA" ref="beanA" />
     </bean>-->
 
-    <bean id="beanBSet" class="java.util.HashSet" lazy-init="true">
+    <bean id="beanBSet" class="java.util.HashSet">
         <constructor-arg>
             <list>
                <!-- <ref bean="beanB" />-->

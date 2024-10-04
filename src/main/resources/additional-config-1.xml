@@ -24,7 +24,6 @@
     <bean id="pipeMemberStartToEtlS1A1MemberEnd" parent="pipeJobParametersToS1A1">
         <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
         <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
-
     </bean>
 
 </beans>

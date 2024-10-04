@@ -13,6 +13,14 @@ public class BeanA implements ApplicationContextAware {
 
     private Set<Pipe> beanBSet;
 
+  /*  public Set<Pipe> getBeanBSet() {
+        return beanBSet;
+    }
+
+    public void setBeanBSet(Set<Pipe> beanBSet) {
+        this.beanBSet = beanBSet;
+    }*/
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
