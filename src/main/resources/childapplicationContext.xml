@@ -85,7 +85,9 @@
     <bean id="beanBSet" class="java.util.HashSet">
         <constructor-arg>
             <list>
-                <ref bean="beanB" />
+               <!-- <ref bean="beanB" />-->
+                <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
+                <ref bean="pipeMemberStartToEtlS1A1MemberEnd"/>
             </list>
         </constructor-arg>
     </bean>
