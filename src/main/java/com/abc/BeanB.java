@@ -14,4 +14,11 @@ public class BeanB {
     public void setBeanA(BeanA beanA) {
         this.beanA = beanA;
     }
+
+    @Override
+    public String toString() {
+        return "BeanB{" +
+                "beanA=" + beanA +
+                '}';
+    }
 }

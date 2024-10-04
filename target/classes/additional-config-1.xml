@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
-		http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/context
-		https://www.springframework.org/schema/context/spring-context.xsd">
-    <tx:annotation-driven/>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+  <!--  <tx:annotation-driven/>-->
     <bean id="empEx" class="com.abc.EmployeeExternalDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
         <property name="pipes">
@@ -23,4 +15,16 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="mysessionFactory"/>
     </bean>
+
+    <bean id="pipeMemberStartToEtlS1A1MemberStart" parent="pipeJobParametersToS1A1">
+        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
+        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
+        <property name ="analytic"  ref="beanA"/>
+    </bean>
+    <bean id="pipeMemberStartToEtlS1A1MemberEnd" parent="pipeJobParametersToS1A1">
+        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
+        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
+        <property name ="analytic"  ref="beanA"/>
+    </bean>
+
 </beans>

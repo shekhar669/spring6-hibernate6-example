@@ -64,28 +64,21 @@
         <property name="source" ref="iproSolutionAnalytic" />
     </bean>
 
-    <bean id="pipeMemberStartToEtlS1A1MemberStart" parent="pipeJobParametersToS1A1">
-        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
-        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
-    </bean>
-    <bean id="pipeMemberStartToEtlS1A1MemberEnd" parent="pipeJobParametersToS1A1">
-        <property name="sourceTypeName" ref="SUBJECT_RANGE_START" />
-        <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
-    </bean>
 
-
-    <bean id="beanA" class="com.abc.BeanA" depends-on="beanB">
+    <bean id="beanA" class="com.abc.BeanA" scope="prototype">
         <property name="beanBSet" ref="beanBSet" />
     </bean>
 
-    <bean id="beanB" class="com.abc.BeanB">
+    <!--<bean id="beanB" class="com.abc.BeanB" scope="prototype" lazy-init="true">
         <property name="beanA" ref="beanA" />
-    </bean>
+    </bean>-->
 
     <bean id="beanBSet" class="java.util.HashSet">
         <constructor-arg>
             <list>
                <!-- <ref bean="beanB" />-->
+                <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
+                <ref bean="pipeMemberStartToEtlS1A1MemberEnd"/>
                 <ref bean="pipeMemberStartToEtlS1A1MemberStart"/>
                 <ref bean="pipeMemberStartToEtlS1A1MemberEnd"/>
             </list>

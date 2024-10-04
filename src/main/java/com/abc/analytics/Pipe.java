@@ -1,9 +1,11 @@
 package com.abc.analytics;
 
+import com.abc.BeanA;
 import com.abc.IproAnalytic;
 
 public class Pipe {
     private IproAnalytic source;
+    private BeanA beanA;
 
     public Pipe() {
     }
@@ -33,5 +35,13 @@ public class Pipe {
 
     public void setSource(IproAnalytic source) {
         this.source = source;
+    }
+
+    public BeanA getBeanA() {
+        return beanA;
+    }
+
+    public void setBeanA(BeanA beanA) {
+        this.beanA = beanA;
     }
 }
