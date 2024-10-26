@@ -41,7 +41,7 @@ public class EmployeeExternalDao {
         mysessionFactory.getCurrentSession().remove(e);
     }
 
-    @Transactional(readOnly=false)
+  @Transactional(readOnly=false)
     public List<?> queryEmployee(){
         List<?> el = mysessionFactory.getCurrentSession().createQuery("FROM Employee",Employee.class).list();
         return el;

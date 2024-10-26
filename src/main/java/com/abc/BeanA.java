@@ -13,13 +13,13 @@ public class BeanA implements ApplicationContextAware {
 
     private Set<Pipe> beanBSet;
 
-  /*  public Set<Pipe> getBeanBSet() {
+ /*  public Set<Pipe> getBeanBSet() {
         return beanBSet;
-    }
+    }*/
 
     public void setBeanBSet(Set<Pipe> beanBSet) {
         this.beanBSet = beanBSet;
-    }*/
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
@@ -28,7 +28,16 @@ public class BeanA implements ApplicationContextAware {
 
     public Set<Pipe> getBeanBSet() {
         if (beanBSet == null) {
+            System.out.println("runtime issue fixess################");
             beanBSet = applicationContext.getBean("beanBSet", Set.class);
+
+            for (Pipe p: beanBSet){
+               System.out.println("source type@@@" +p.getSourceTypeName());
+               System.out.println("source########" +p.getSource());
+
+            }
+
+            System.out.println("bean set"+ beanBSet);
         }
         return beanBSet;
     }

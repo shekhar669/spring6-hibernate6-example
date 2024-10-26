@@ -1,17 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
-        "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<beans>
-<bean id="dataSource" 
+
+
+<!--<bean id="basicDataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
       <property name="url" value="jdbc:mysql://localhost:3306/test?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
       <property name="username" value="root"/>
       <property name="password" value="root"/>
-   </bean>
+   </bean>-->
+
+    <bean id="basicDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="initialSize" value="10" />
+        <property name="maxActive" value="50" />
+    </bean>
       
-    <bean id="mysessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+   <!-- <bean id="mysessionFactory"  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
           
         <property name="mappingResources">  
@@ -24,20 +40,36 @@
             <props>  
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  
                 <prop key="hibernate.hbm2ddl.auto">update</prop>  
-                <prop key="hibernate.show_sql">true</prop>  
-                  
+                <prop key="hibernate.show_sql">true</prop>
             </props>  
         </property>  
-    </bean>  
-      
-   <!-- <bean id="hTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
-    <property name="sessionFactory" ref="mysessionFactory"></property>  
-    &lt;!&ndash;   property name="checkWriteOperations" value="false"></property &ndash;&gt;
+    </bean>-->
+
+    <bean id="mysessionFactory" class="com.abc.DynamicLocalSessionFactory">
+      <property name="basicDataSource" ref="basicDataSource"/>
+        <property name="mappingResources">
+            <list>
+                <value>employee.hbm.xml</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
     </bean>
-      
-    <bean id="d" class="com.abc.EmployeeDao">  
-    <property name="eTemplate" ref="hTemplate"></property>  
-    </bean> -->
+
+    <!-- <bean id="hTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+     <property name="sessionFactory" ref="mysessionFactory"></property>
+     &lt;!&ndash;   property name="checkWriteOperations" value="false"></property &ndash;&gt;
+     </bean>
+
+     <bean id="d" class="com.abc.EmployeeDao">
+     <property name="eTemplate" ref="hTemplate"></property>
+     </bean> -->
     <!--<bean id="d" class="com.abc.EmployeeDao">
         <property name="mysessionFactory" ref="mysessionFactory"/>
     </bean>-->

@@ -15,6 +15,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 //import org.springframework.beans.factory.xml.XmlBeanFactory;
 import com.jillesvangurp.springdepend.SpringDependencyAnalyzer;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -36,8 +37,8 @@ public static void main(String[] args) {
     CustomBeanFactoryPostProcessor customBeanFactoryPostProcessor= new CustomBeanFactoryPostProcessor();
     context2.addBeanFactoryPostProcessor(customBeanFactoryPostProcessor);
     context2.refresh();
-    SessionFactory factory=(SessionFactory) context2.getBean("mysessionFactory");
 
+    SessionFactory factory=(SessionFactory) context2.getBean("mysessionFactory");
     System.out.println("Session Factory### " + factory);
 
     for (String name: context.getBeanDefinitionNames()){

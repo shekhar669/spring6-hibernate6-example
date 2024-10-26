@@ -13,5 +13,4 @@
           <property name="name"></property>
           <property name="salary"></property>
           </class>
-          
-          </hibernate-mapping>
+</hibernate-mapping>
