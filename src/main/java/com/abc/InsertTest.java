@@ -1,32 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.abc;
 
-/**
- *
- * @author shekhar
- */
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-//import org.springframework.beans.factory.xml.XmlBeanFactory;
-import com.jillesvangurp.springdepend.SpringDependencyAnalyzer;
-import org.apache.commons.dbcp.BasicDataSource;
+
+import com.abc.analytics.EmployeeService;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
+
 
 public class InsertTest {
 public static void main(String[] args) {
-	
-	//Resource r=new ClassPathResource("applicationContext.xml");
-	//BeanFactory factory=new XmlBeanFactory(r);
 
     ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     String [] arr={"childapplicationContext.xml"};
@@ -39,34 +25,19 @@ public static void main(String[] args) {
     context2.refresh();
 
     SessionFactory factory=(SessionFactory) context2.getBean("mysessionFactory");
-    System.out.println("Session Factory### " + factory);
 
-    for (String name: context.getBeanDefinitionNames()){
-        System.out.println("parent context@@"+ name);
+    EmployeeService empService=(EmployeeService)context2.getBean("empService");
+    List<Employee> empList= new ArrayList<>();
+    for (int i=0;i<10;i++) {
+        Employee e = new Employee();
+        //e.setId(251);
+        e.setName("Kishore"+i +" ran"+ new Random().nextInt());
+        e.setSalary(8011000);
+        empList.add(e);
     }
-
-    for (String name: context2.getBeanDefinitionNames()){
-        System.out.println("child context@@"+ name);
-    }
-
-    EmployeeExternalDao dao=(EmployeeExternalDao)context2.getBean("empEx");
-    CircularDependencyA exta=(CircularDependencyA)context2.getBean("cira");
-    System.out.println("ext" +exta);
-   // IproAnalytic IproAnalytic=(IproAnalytic)context2.getBean("iproSolutionAnalytic");
-   // System.out.println("IproAnalytic###############" +IproAnalytic.getPipes());
-
-    BeanA beanA=(BeanA)context2.getBean("beanA");
-    System.out.println("beanA###############" +beanA.getBeanBSet().size());
-
-    Employee e=new Employee();
-	//e.setId(251);
-	e.setName("Kishore"+ new Random().nextInt());
-	e.setSalary(8011000);
-	//dao.saveEmployee(e);
-	//dao.updateEmployee(e);
-      List<?> empl = dao.queryEmployee();
-        
-        for(Object eobj:empl)
+      empService.evaluate(empList,5);
+      List<?> empl = empService.getEmployees();
+       for(Object eobj:empl)
         {
             Employee etmp = (Employee)eobj;
             System.out.println(etmp.getName()+" "+etmp.getSalary());

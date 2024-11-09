@@ -75,4 +75,7 @@
     </bean>-->
     <bean id="refBean" class="com.abc.RefBean"/>
 
+    <!-- Default TransactionTemplate Bean -->
+
+
     </beans>  

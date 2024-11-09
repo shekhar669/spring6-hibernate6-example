@@ -30,4 +30,8 @@
         <property name="sinkTypeName" ref="SUBJECT_RANGE_START" />
     </bean>
 
+    <bean id="defaultTransactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+        <constructor-arg ref="transactionManager"/>
+    </bean>
+
 </beans>

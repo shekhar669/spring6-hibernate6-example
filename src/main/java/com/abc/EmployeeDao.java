@@ -5,18 +5,15 @@
  */
 package com.abc;
 
-/**
- *
- * @author ADMIN
- */
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.transaction.annotation.Transactional;
+
 
 public class EmployeeDao {
-HibernateTemplate eTemplate;
+
+	SessionFactory mysessionFactory;
 
 	public SessionFactory getMysessionFactory() {
 		return mysessionFactory;
@@ -26,27 +23,35 @@ HibernateTemplate eTemplate;
 		this.mysessionFactory = mysessionFactory;
 	}
 
-	SessionFactory mysessionFactory;
-
-
-@Transactional(readOnly=false)
 public void saveEmployee(Employee e){
 	mysessionFactory.getCurrentSession().persist(e);
 }
 
-@Transactional(readOnly=false)
 public void updateEmployee(Employee e){
 	mysessionFactory.getCurrentSession().merge(e);
 }
 
-@Transactional(readOnly=false)
+
 public void deleteEmployee(Employee e){
 	mysessionFactory.getCurrentSession().remove(e);
 }
 
-@Transactional(readOnly=false)
+
 public List<?> queryEmployee(){
 	List<?> el = mysessionFactory.getCurrentSession().createQuery("FROM Employee",Employee.class).list();
         return el;
 }
+
+	public void saveEmployeesInBatches(List<Employee> employees, int batchSize) {
+		Session session = mysessionFactory.getCurrentSession();
+		int count = 0;
+		for (Employee employee : employees) {
+			session.persist(employee);
+			count++;
+			if (count % batchSize == 0) {
+				session.flush();
+				session.clear();
+			}
+		}
+	}
 }
