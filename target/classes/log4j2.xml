@@ -14,10 +14,10 @@
         <logger name="org.hibernate.transaction" level="DEBUG"/>
         <logger name="org.hibernate.engine.transaction" level="TRACE"/>
         <logger name="org.hibernate.jdbc" level="TRACE"/>
-        <logger name="org.hibernate.type" level="TRACE"/>
+       <!-- <logger name="org.hibernate.type" level="TRACE"/>-->
        <!-- <Logger name="org.hibernate.type.descriptor.sql" level="trace"/>-->
-        <Logger name="org.hibernate.orm.jdbc.bind" level="trace"/>
-        <logger name="org.springframework.jdbc" level="TRACE"/>
+       <!-- <Logger name="org.hibernate.orm.jdbc.bind" level="trace"/>-->
+        <logger name="org.springframework" level="TRACE"/>
         <logger name="org.apache.tomcat.jdbc.pool" level="DEBUG"/>
     </Loggers>
 </Configuration>
