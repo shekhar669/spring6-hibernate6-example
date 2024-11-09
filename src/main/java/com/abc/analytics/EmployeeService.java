@@ -27,9 +27,18 @@ public class EmployeeService {
      * Main method to evaluate and trigger the batch insert process.
      */
     public void evaluate(List<Employee> employees, int batchSize) {
-        initialize();
-        preprocess();
-        process(employees, batchSize);
+        TransactionDefinition readOnlyTransaction = new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRED);
+        ((DefaultTransactionDefinition) readOnlyTransaction).setReadOnly(true);
+
+        // Create a TransactionTemplate with the read-only transaction definition
+        TransactionTemplate readOnlyTransactionTemplate = new TransactionTemplate(defaultTransactionTemplate.getTransactionManager(), readOnlyTransaction);
+
+        readOnlyTransactionTemplate.execute(status -> {
+            initialize();
+            preprocess();
+            process(employees, batchSize);
+            return null;
+        });
     }
 
     /**
@@ -73,7 +82,7 @@ public class EmployeeService {
      */
     public void process(List<Employee> employees, int batchSize) {
         // Create a non-read-only transaction definition (default behavior)
-        TransactionDefinition writeTransaction = new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRED);
+        TransactionDefinition writeTransaction = new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
 
         // Create a TransactionTemplate with the write transaction definition
         TransactionTemplate writeTransactionTemplate = new TransactionTemplate(defaultTransactionTemplate.getTransactionManager(), writeTransaction);
